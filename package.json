@@ -1,0 +1,24 @@
+{
+  "scripts": {
+    "start": "npx drizzle-kit push && node src/index.ts"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.15.9",
+    "@types/humanize-duration": "^3.27.4",
+    "@types/node-cron": "^3.0.11",
+    "ascii-table3": "^1.0.1",
+    "bufferutil": "^4.0.9",
+    "discord.js": "^14.21.0",
+    "dotenv": "^17.0.1",
+    "drizzle-orm": "^0.44.2",
+    "humanize-duration": "^3.33.0",
+    "node-cron": "^4.2.0",
+    "winston": "^3.17.0",
+    "zlib-sync": "^0.1.10"
+  },
+  "type": "module",
+  "devDependencies": {
+    "drizzle-kit": "^0.31.4",
+    "tsx": "^4.20.3"
+  }
+}
