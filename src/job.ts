@@ -1,4 +1,4 @@
-import { Client } from "discord.js"
+import { ActivityType, Client } from "discord.js"
 import { activities } from "./db/schema.ts"
 import { LibSQLDatabase } from "drizzle-orm/libsql"
 import { sql } from "drizzle-orm"
@@ -20,7 +20,7 @@ export default async function job(
             if (user.user.bot) continue
             userCount++
             for (const activity of user.presence?.activities || []) {
-                if (activity.applicationId) {
+                if (activity.applicationId && activity.type == ActivityType.Playing) {
                     values.push({
                         guildId: gid,
                         userId: uid,
@@ -34,7 +34,7 @@ export default async function job(
             }
         }
         logger.info(`Inserting/Updating ${values.length} row(s)`)
-        if (values)
+        if (values.length)
             await db
                 .insert(activities)
                 .values(values)
@@ -51,7 +51,7 @@ export default async function job(
                     },
                 })
         logger.info(
-            `Fetched ${userCount} from ${Guilds.size} guilds. Found ${values.length} activities.`
+            `Fetched ${userCount} user(s) from ${Guilds.size} guild(s). Found ${values.length} activities.`
         )
     }
 }
