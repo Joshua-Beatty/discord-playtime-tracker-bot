@@ -1,0 +1,12 @@
+services:
+  bot:
+    build:
+      context: https://github.com/Joshua-Beatty/discord-playtime-tracker-bot.git
+    environment:
+      - TOKEN=YOUR BOT TOKEN HERE
+      - CLIENT_ID=YOUR APP CLIENT ID HERE
+      - DB_FILE_NAME=file:/config/db.sqlite
+    volumes:
+      - /storage/configs/playTimeBotConfig:/config
+    restart: unless-stopped
+    pull_policy: always
