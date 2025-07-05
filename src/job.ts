@@ -8,10 +8,10 @@ export default async function job(
     client: Client,
     db: LibSQLDatabase<Record<string, never>>
 ) {
-    logger.info(`Fetcing activities`)
+    logger.info(`Fetching activities`)
     const Guilds = await client.guilds.fetch()
     let userCount = 0
-    logger.info(`Fetcing guild users of ${Guilds.size} guilds`)
+    logger.info(`Fetching guild users of ${Guilds.size} guilds`)
     const values: (typeof activities.$inferInsert)[] = []
     for (const [gid, partialGuild] of Guilds) {
         const guild = await partialGuild.fetch()
